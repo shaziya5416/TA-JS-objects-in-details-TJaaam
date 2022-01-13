@@ -1,28 +1,25 @@
 - //Create a class named `Square` which accepts one parameter `side` and will set two property `width` and `height` to the value of `side`.
 class Square{
     constructor(side){
-        this.side=side;
-    }
-    set width(){
-        return this.side;
-    };
-    set height(){
-        return this.side;
+        this.height=side;
+        this.width=side;
     }
     description(){
-        alert(`The square is ${width} x ${height}`);
+        alert(`The square is ${this.width} x ${this.height}`);
     }
     calcArea(){
-        return width*height;
+        return this.width*this.height;
     }
     get area(){
-        return this.side^2;
+        return this.width*this.height;
     }
-    set area(area){
-     return **squareroot
+    set area(value){
+     let valueOfSide=Math.sqrt(value);
+     this.width=valueOfSide;
+     this.height=valueOfSide;
     }
-    static isEqual(){
-
+    static isEqual(a,b){
+      return (a.height*a.width)==(b.height*b.width);  
     }
     
 }
@@ -49,7 +46,32 @@ let square2= new Square(20);
 //## User Class
 
 - //Create a `User` class that accepts `firstName` and `lastName` property
-
+class User{
+ constructor(firstName,lastName){
+     this.firstName=firstName;
+     this.lastName=lastName;
+ }
+ get fullName(){
+     return this.firstName+" "+this.lastName;
+ }
+ set fullName(fName,lName){
+     this.firstName=fName;
+     this.lastName=this.lastName;
+     let fullName= this.firstName+" "+this.lastName;
+     if (fullName.length<=5){
+         alert("Does'nt fulfull conditions")
+     }
+     else{
+         return fullName;
+     }
+    
+ }
+ nameContains(string){
+   return `${this.firstName} ${this.lastName}`.contains(string); 
+ }
+}
+let name1=new User("Shazia","Khan");
+let name2= new User("Amitabh","Bacchan");
 - //Create a getter method named `fullName` that will return the full name of the person.
 
 - //Create a `fullName` setter method that will accept full name parameter of the person. It will update the `firstName` and `lastName` based on the input. Say if the user passed `Arya Stark` it will update the `firstName` to `Arya` and `lastName` to `Stark`. It will also change one condition if the length of the name passed is less than 5 characters it will alert a message saying `Full name should be more than 5 characters`
