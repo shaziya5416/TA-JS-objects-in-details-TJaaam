@@ -1,15 +1,15 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); // Output true
 
 // ------------
 
-console.log(this === window); //Output
+console.log(this === window); //Output //true
 
 // ------------
 
 var myFunction = function () {
   console.log(this);
 };
-myFunction(); // Output
+myFunction(); // Output window
 
 // ------------
 
@@ -17,7 +17,7 @@ function f1() {
   'use strict';
   return this;
 }
-console.log(f1() === window); //Output
+console.log(f1() === window); //true
 
 // ------------
 
@@ -26,7 +26,7 @@ function foo() {
   console.log(this === window);
 }
 
-foo(); //Output ??
+foo(); //Output true
 
 // ------------
 
@@ -34,7 +34,7 @@ foo(); //Output ??
 (function () {
   console.log('Anonymous function invocation');
   console.log(this === window);
-})(); //Output
+})(); true
 
 // ------------
 
@@ -42,7 +42,7 @@ var myObject = {};
 myObject.someMethod = function () {
   console.log(this);
 };
-myObject.someMethod(); //Value Of This
+myObject.someMethod(); //Value Of This //{}
 
 // ------------
 
@@ -56,9 +56,9 @@ function Person(fn, ln) {
 }
 
 let person = new Person('John', 'Reed');
-person.displayName(); // Output
+person.displayName(); // Name:John Reed
 let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+person2.displayName(); // Name:Paul Adams
 
 // ------------
 
@@ -76,10 +76,10 @@ let user = {
   },
 };
 
-user.foo(); // Output
+user.foo(); // true
 let fun1 = user.foo1;
-fun1(); // Output ??
-user.foo1(); // Output ??
+fun1(); // true
+user.foo1(); //false 
 
 // ------------
 
@@ -91,13 +91,13 @@ var obj = {
   },
 };
 
-obj.getX(); // Output ??
+obj.getX(); // Output ?? //81
 
 var retrieveX = obj.getX;
-retrieveX(); //Output ??
+retrieveX(); //81
 
 var boundGetX = retrieveX.bind(obj);
-boundGetX(); // Output ??
+boundGetX(); // 81
 
 // ------------
 
@@ -111,11 +111,11 @@ function Person(fn, ln) {
 }
 
 let person = new Person('John', 'Reed');
-person.displayName(); // Output
+person.displayName(); // same as above
 let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+person2.displayName();
 
-person.displayName.call(person2); // Output ??
+person.displayName.call(person2); // JOhn reed because new has priority
 
 // ------------
 
@@ -132,22 +132,22 @@ obj.getThis3 = obj.getThis.bind(obj);
 obj.getThis4 = obj.getThis2.bind(obj);
 
 // Output
-obj.getThis();
+obj.getThis(); windiw
 
 // Output
-obj.getThis.call(a);
+obj.getThis.call(a); undefined
 
 // Output
-obj.getThis2();
+obj.getThis2(); //obj willl be returned
 
 // Output
-obj.getThis2.call(a);
+obj.getThis2.call(a); undefined
 
 // Output
-obj.getThis3();
+obj.getThis3();//undefined
 
 // Output
-obj.getThis4();
+obj.getThis4();//obj will be returned
 
 // -------------
 
@@ -297,6 +297,6 @@ const call = {
   },
 };
 
-let newCall = call.anotherCaller;
+let newCall = call.anotherCaller; 
 
-newCall(); // output ??
+newCall(); // DOnt'know
