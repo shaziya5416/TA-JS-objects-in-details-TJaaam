@@ -17,14 +17,14 @@ function f1() {
   'use strict';
   return this;
 }
-console.log(f1() === window); //true
+console.log(f1() === window); //false because of use strict
 
 // ------------
 
 function foo() {
   console.log('Simple function call');
   console.log(this === window);
-}
+} 
 
 foo(); //Output true
 
@@ -65,7 +65,7 @@ person2.displayName(); // Name:Paul Adams
 function foo() {
   'use strict';
   console.log('Simple function call');
-  console.log(this === window);
+  console.log(this === window);// false
 }
 
 let user = {
@@ -76,9 +76,9 @@ let user = {
   },
 };
 
-user.foo(); // true
+user.foo(); // false beacuse no equal to window
 let fun1 = user.foo1;
-fun1(); // true
+fun1(); // true because nothing before this even in default binding
 user.foo1(); //false 
 
 // ------------
@@ -94,10 +94,10 @@ var obj = {
 obj.getX(); // Output ?? //81
 
 var retrieveX = obj.getX;
-retrieveX(); //81
+retrieveX(); //9 no rule is applied
 
 var boundGetX = retrieveX.bind(obj);
-boundGetX(); // 81
+boundGetX(); // 81  because of binding
 
 // ------------
 
@@ -135,16 +135,16 @@ obj.getThis4 = obj.getThis2.bind(obj);
 obj.getThis(); windiw
 
 // Output
-obj.getThis.call(a); undefined
+obj.getThis.call(a); window because arrow function
 
 // Output
 obj.getThis2(); //obj willl be returned
 
 // Output
-obj.getThis2.call(a); undefined
+obj.getThis2.call(a); a
 
 // Output
-obj.getThis3();//undefined
+obj.getThis3();//window bwcause arrow function
 
 // Output
 obj.getThis4();//obj will be returned
@@ -158,10 +158,10 @@ let person = {
   },
 };
 
-person.greet(); // output
+person.greet(); // hello jay
 
 let greet = person.greet;
-greet(); // output
+greet(); // hello + "empty string" because window will default to empty string
 
 // -------------
 
@@ -178,14 +178,14 @@ let person = {
     return this.name;
   },
 };
-console.log(person.details.print()); // output?
-console.log(person.print()); // output?
+console.log(person.details.print()); // jay details 
+console.log(person.print()); // jay person
 
-let name1 = person.print;
+let name1 = person.print; 
 let name2 = person.details;
-
-console.log(name1()); // output?
-console.log(name2.print()); // output?
+ 
+console.log(name1()); // window becuase function refre
+console.log(name2.print()); // error
 
 // --------
 
@@ -199,7 +199,7 @@ let outerFn = function () {
   return innerFn;
 };
 
-outerFn()();
+outerFn()();//is it window?
 
 // -----------
 
@@ -209,8 +209,8 @@ let object = {
   double: function () {
     console.log('this inside of outerFn double()');
     console.log(this);
-    return this.data.map(function (item) {
-      console.log(this); // Output ???
+    return this.data.map(function (item) { //window
+      console.log(this); 
       return item * 2;
     });
   },
@@ -218,13 +218,13 @@ let object = {
     console.log('this inside of outerFn doubleArrow()');
     console.log(this);
     return this.dataDouble.map((item) => {
-      console.log(this); // Output ???
+      console.log(this); // object
       return item * 2;
     });
   },
 };
 
-object.double();
+object.double(); //this is whole object in thid
 object.doubleArrow();
 
 // --------------
@@ -238,7 +238,7 @@ function print() {
 }
 
 let printNameBob = print.bind(bobObj);
-console.log(printNameBob()); // output??
+console.log(printNameBob()//Bob
 
 // -------------------
 
@@ -257,7 +257,7 @@ let obj2 = {
 };
 
 let getSecondData = obj2.printSecondData.bind(obj1);
-console.log(getSecondData()); // Output and why ???
+console.log(getSecondData()); // 2
 
 // --------------
 
@@ -268,7 +268,7 @@ const call = {
   },
 };
 
-call.says(); // output ???
+call.says(); // Hey mom just called
 
 // -----------------
 
@@ -281,7 +281,7 @@ const call = {
 
 let newCall = call.says;
 
-newCall(); // output ???
+newCall(); // hey undefined just called
 
 //  -----------------
 
@@ -299,4 +299,4 @@ const call = {
 
 let newCall = call.anotherCaller; 
 
-newCall(); // DOnt'know
+newCall(); // another caller just called
