@@ -75,9 +75,8 @@ let dogProps={
 Object.setPrototypeOf(dogProps,animalProps);
 
 function dogs(location,numberOfLegs,name,color){
-    let animal=Object.create(dogProps);
-    animal.location=location;
-    animal.numberOfLegs=numberOfLegs;
+    let animal=Animals(location,numberOfLegs);
+    Object.setPrototypeOf(Animals,dogProps)
     animal.name=name;
     animal.color=color;
     return animal;
@@ -121,9 +120,8 @@ let catProps={
  Object.setPrototypeOf(catProps,animalProps);
  
  function cats(location,numberOfLegs,name,colorOfEyes){
-     let animal=Object.create(catProps);
-     animal.location=location;
-     animal.numberOfLegs=numberOfLegs;
+     let animal=Animals(location,numberOfLegs);
+     Object.setPrototypeOf(Animals,catProps);
      animal.name=name;
      animal.colorOfEyes=colorOfEyes;
      return animal;
