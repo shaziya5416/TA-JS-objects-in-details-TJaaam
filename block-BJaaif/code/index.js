@@ -5,7 +5,13 @@
 /*** CHALLENGE 1 of 1 ***/
 
 function makePerson(name, age) {
-  // add code here
+  let user={};
+  user.name=name;
+  user.age=age;
+  user.greet=function(){
+    console.log("hello");
+  }
+
 }
 
 var vicky = makePerson('Vicky', 24);
@@ -21,7 +27,13 @@ var vicky = makePerson('Vicky', 24);
 /*** CHALLENGE 1 of 3 ***/
 
 var personStore = {
-  // add code here
+  greet: function(){
+    console.log("hello");
+  },
+  introduce:function(){
+    console.log(`Hey my name is ${this.name}`);
+  }
+
 };
 
 // /********* Uncomment this line to test your work! *********/
@@ -30,8 +42,15 @@ var personStore = {
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-  // add code here
+ let something=Object.create(personStore);
+ this.name=name;
+ this.age=age;
+ return this;
 }
+function personFromPersonStore(name, age) {
+  this.name=name;
+  this.age=age;
+ }
 
 var sandra = personFromPersonStore('Sandra', 26);
 
@@ -85,12 +104,29 @@ var mike = personFromConstructor('Mike', 30);
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-  constructor() {
-    // add code here
+  constructor(name) {
+    this.name=name;
   }
+  greet(){
+    console.log(`my name is ${this.name}`);
+  }
+}
+
+class DeveloperClass extends PersonClass{
+super(name);
+introduce(){
+  console.log(`my name is ${this.name}`);
+}
+
+
+
+} 
+
+
+
 
   // add code here
-}
+
 
 // /********* Uncomment this line to test your work! *********/
 var george = new PersonClass();
@@ -126,7 +162,7 @@ function userFactory(name, score) {
 var adminFunctionStore /* Put code here */;
 
 function adminFactory(name, score) {
-  // Put code here
+  
 }
 
 /* Put code here for a method called sharePublicMessage*/
