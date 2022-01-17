@@ -53,7 +53,43 @@ body{
 header{
     text-align: center;
 }
-h1{
+h2{
     font-size: 3rem;
     color: black;
+}
+.form_name,.form_author,.form_image{
+    padding-right: 20rem;
+    display: block;
+    font-size: 1.5rem;
+    color: black;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    border-radius: 0.5rem;
+}
+.form{
+    margin-left: 35%;
+    margin-top: 2rem;
+}
+.form_button,.button_DOM{
+    text-align: center;
+    background-color: darkkhaki;
+    font-size: 1.5rem;
+    padding: 10px;
+    font-weight: 900;
+    border-radius: 5px;
+    
+
+}
+.books{
+    margin: 0 auto;
+    padding: 4rem;
+}
+h1{
+    font-size: 2rem;
+    color: red;
+}
+p{
+    font-size: 1.2rem;
 }
