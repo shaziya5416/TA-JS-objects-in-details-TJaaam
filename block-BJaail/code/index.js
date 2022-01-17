@@ -19,6 +19,7 @@ class BookList{//individual books
         this.books.forEach((book)=>{
         let li=document.createElement(`li`);
         let img=document.createElement(`img`);
+        img.classList.add(`book_img`)
         img.src=book.img;
         let p= document.createElement(`p`);
         p.innerText=book.author;
@@ -26,9 +27,13 @@ class BookList{//individual books
         h1.innerText=book.name;
         let button= document.createElement(`button`);
         button.classList.add(`button_DOM`);
-        button.innerText=`Mark As Read`;
+        button.innerText=book.isRead? "Completed":"Mark As Read";
+        button.addEventListener("click",()=>{
+            book.ToggleIsRead();
+            this.createUI();
+        });
         li.append(img,h1,p,button);
-        bookListRoot.append(`li`);
+        bookListRoot.append(li);
         })
     }
 }
@@ -40,6 +45,10 @@ class Books{///inside each book
         this.name=name;
         this.author=author;
         this.img=img;
+        this.isRead=false;
+    }
+    ToggleIsRead(){
+        this.isRead=!this.isRead;
     }
 
 }
@@ -51,6 +60,9 @@ function handleSubmit(event){
     const image=imageElm.value;
     const author=authorElm.value;
     library.addBooks(name,author,image);
+    nameElm.value=``;
+    imageElm.value=``;
+    authorElm.value=``;
 }
 
 form.addEventListener(`submit`,handleSubmit);
